@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import WelcomeScreen from './screens/WelcomeScreen';
 import HomeScreen from './screens/HomeScreen';
+import TempScreen from './screens/TempScreen';
 
 const Stack = createStackNavigator();
 
@@ -19,6 +20,11 @@ export default function App() {
           name="Home"
           component={HomeScreen}
           options={{ title: 'Home Screen' }}
+        />
+         <Stack.Screen
+          name="Temp"
+          component={TempScreen}
+          options={{ title: 'Temperature Screen' }}
         />
       </Stack.Navigator>
     </NavigationContainer>

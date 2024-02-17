@@ -11,7 +11,8 @@ import {
   Image,
 } from "react-native";
 
-export default function HomeScreen() {
+const HomeScreen = ({ navigation }) => {
+    
   const batterylevel = 80;
 
   const [devices, setDevices] = useState(["Aamna's Phone", "Kashu's Phone"]);
@@ -101,7 +102,7 @@ export default function HomeScreen() {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              /* Handle press for second button */
+                navigation.navigate('Temp')
             }}
           >
             <Image
@@ -111,7 +112,7 @@ export default function HomeScreen() {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              /* Handle press for third button */
+                /* Handle press for first button */
             }}
           >
             <Image
@@ -282,3 +283,5 @@ const styles = StyleSheet.create({
   //   justifyContent: "center",
   // },
 });
+
+export default HomeScreen
