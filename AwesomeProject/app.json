@@ -25,6 +25,18 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "assets": [
+      "./assets/fonts/"
+    ],
+    "fonts": [
+      {
+        "fontFamily": "JuliusSansOne",
+        "fontFiles": [
+          "JuliusSansOne-Regular.ttf"
+        ]
+      }
+    ]
   }
 }
+
