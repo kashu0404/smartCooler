@@ -15,7 +15,7 @@ const HomeScreen = ({ navigation }) => {
     
   const batterylevel = 80;
 
-  const [devices, setDevices] = useState(["Aamna's Phone", "Kashu's Phone"]);
+  const [devices, setDevices] = useState(["Aamna's Cooler", "Kashu's Cooler"]);
 
   const handlePress = (device) => {
     Alert.alert("Disconnect Device", `Do you want to disconnect ${device}?`, [
@@ -59,20 +59,6 @@ const HomeScreen = ({ navigation }) => {
           <Text style={styles.currentTemp}>Current Temperature</Text>
           <View style={styles.buttonsContainer}>
             <Text style={styles.temperatureText}>{temperature}°</Text>
-            <View style={styles.updownContainer}>
-              <TouchableOpacity
-                onPress={increaseTemperature}
-                style={styles.button}
-              >
-                <Text style={styles.buttonText}>▲</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={decreaseTemperature}
-                style={styles.button}
-              >
-                <Text style={styles.buttonText}>▼</Text>
-              </TouchableOpacity>
-            </View>
           </View>
         </View>
 
@@ -90,6 +76,8 @@ const HomeScreen = ({ navigation }) => {
         </View>
 
         <View style={styles.footer}>
+
+        {/* ICON #1 */}
           <TouchableOpacity
             onPress={() => {
               /* Handle press for first button */
@@ -100,6 +88,9 @@ const HomeScreen = ({ navigation }) => {
               style={{ width: 30, height: 30 }}
             />
           </TouchableOpacity>
+
+        {/* ICON #2 */}
+
           <TouchableOpacity
             onPress={() => {
                 navigation.navigate('Temp')
@@ -110,9 +101,12 @@ const HomeScreen = ({ navigation }) => {
               style={{ width: 30, height: 30 }}
             />
           </TouchableOpacity>
+
+
+          {/* ICON #3 */}
           <TouchableOpacity
             onPress={() => {
-                /* Handle press for first button */
+                navigation.navigate('Setting')
             }}
           >
             <Image

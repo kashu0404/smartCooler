@@ -1,5 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
+
 import {
   ScrollView,
   StyleSheet,
@@ -10,30 +11,32 @@ import {
   Image,
 } from "react-native";
 
-const SettingsScreen = ({navigation}) => {
-  
-    const [options] = useState(["Connect Cooler", "Disconnect Cooler", "Usage Statistics"]);
+const CoolingScreen = ({navigation}) => {
+    const [temperature, setTemperature] = React.useState(0);
+
+  const increaseTemperature = () => {
+    setTemperature((prevTemperature) => prevTemperature + 1);
+  };
+
+  const decreaseTemperature = () => {
+    setTemperature((prevTemperature) => prevTemperature - 1);
+  };
 
   return (
     <ScrollView>
       <View style={styles.container}>
-        <Text style={styles.header}>Settings</Text>
+        <Text style={styles.header}>SMARTCOOLER</Text>
 
-        {/* new info */}
-
-        <View style={styles.deviceContainer}>
-          <Text style={styles.currentDevice}>Select One</Text>
-          <View style={styles.deviceWrap}>
-            {options.map((device, index) => (
-               <TouchableOpacity key={index} onPress={() => handlePress(device)}>
-               <View style={styles.deviceNameContainer}>
-                 <Text style={styles.deviceName}>{device}</Text>
-               </View>
-             </TouchableOpacity>
-            ))}
+        <View style={styles.temperatureContainer}>
+          <Text style={styles.currentTemp}>Current Temperature</Text>
+          <View style={styles.buttonsContainer}>
+            <Text style={styles.temperatureText}>{temperature}°</Text>
           </View>
         </View>
-        
+
+        <View style={styles.startContainer}>
+            <Text style={styles.setCool}>Cooling ... </Text>
+        </View>
 
         <View style={styles.footer}>
           <TouchableOpacity
@@ -60,7 +63,7 @@ const SettingsScreen = ({navigation}) => {
 
           <TouchableOpacity
             onPress={() => {
-              /* Handle press for third button */
+                navigation.navigate('Setting')
             }}
           >
             <Image
@@ -74,14 +77,13 @@ const SettingsScreen = ({navigation}) => {
       </View>
     </ScrollView>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#BBE8F7",
+    backgroundColor: "#B4CBD3",
     alignItems: "center",
-    
   },
   header: {
     fontWeight: "bold",
@@ -93,10 +95,18 @@ const styles = StyleSheet.create({
     right: 0,
     zIndex: 1000,
     paddingBottom: 30,
-    backgroundColor: "#BBE8F7",
+    backgroundColor: "#B4CBD3",
     elevation: 3,
   },
-  batteryContainer: {
+
+  setCool: {
+    fontSize: 20,
+    fontWeight: "700",
+  },
+
+  startContainer: {
+    marginTop: 30,
+    marginBottom: 200,
     shadowOffset: {
       width: 0,
       height: 2,
@@ -105,19 +115,14 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
     backgroundColor: "#fff",
-    width: "70%",
-    marginTop: 200,
-    paddingBottom: 50,
-    paddingLeft: 50,
-    paddingRight: 50,
+    width: 270,
+    padding: 15,
     borderRadius: 20,
-    alignItems: "center", // Center the text horizontally
-    justifyContent: "center", // Center the text vertically
+    alignItems: "center",
+    justifyContent: "center",
   },
-
-  deviceContainer: {
+  temperatureContainer: {
     marginTop: 200,
-    marginBottom: 55,
     shadowOffset: {
       width: 0,
       height: 2,
@@ -135,27 +140,29 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-
-  currentDevice: {
+  currentTemp: {
     fontSize: 20,
-    marginBottom: 40,
+    marginBottom: 20,
     fontWeight: "700",
   },
- 
-  deviceName: {
-    fontSize: 18,
-    fontWeight: "500",
-    textAlign: "center",
-    justifyContent: "center",
+  temperatureText: {
+    fontSize: 24,
   },
-  deviceNameContainer: {
-    
-    marginBottom: 25,
-    backgroundColor: "#B4CBD3",
-    padding: 17,
+  buttonsContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  button: {
+    padding: 10,
+    margin: 5,
     borderRadius: 50,
   },
+  buttonText: {
+    fontSize: 20,
+  },
 
+  
   footer: {
     width: "100%",
     flexDirection: "row",
@@ -166,4 +173,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SettingsScreen;
+export default CoolingScreen
