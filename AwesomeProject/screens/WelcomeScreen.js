@@ -1,10 +1,15 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 
 const WelcomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Welcome to SmartCooler</Text>
+      <View style={styles.containertwo}>
+      <Image
+            source={require("../assets/cooler.png")}
+            style={{ width: 55, height: 55, marginBottom: 15}}
+            />
+      <Text style={styles.text}>SmartCooler</Text></View>
       <TouchableOpacity
         style={styles.button}
         onPress={() => navigation.navigate('Home')}
@@ -22,8 +27,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#BBE8F7'
   },
+  containertwo:{
+    flexDirection: "row-reverse",
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 10
+  },
   text: {
     fontFamily: 'JuliusSansOne',
+    fontWeight: "bold",
     fontSize: 25
   },
   button: {
